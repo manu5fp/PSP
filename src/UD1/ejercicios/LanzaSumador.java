@@ -23,7 +23,7 @@ import java.util.Scanner;
  * 
  * @author
  */
-public class Lanzador {
+public class LanzaSumador {
 
     /**
      * Lanza un proceso Java que ejecuta la clase {@code UD1.Sumador}
@@ -70,7 +70,7 @@ public class Lanzador {
      * @throws IOException Si ocurre un error al leer los archivos de resultados.
      */
     public static void main(String[] args) throws InterruptedException, IOException {
-        Lanzador l = new Lanzador();
+        LanzaSumador l = new LanzaSumador();
 
         long ini = 1;
         // Lanzar 4 procesos para rangos de 25 números
