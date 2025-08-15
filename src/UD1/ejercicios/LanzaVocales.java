@@ -47,7 +47,7 @@ public class LanzaVocales {
     public static void main(String[] args) throws IOException, InterruptedException {
         String[] vocales = { "A", "E", "I", "O", "U" };
         String directoryName = System.getProperty("user.dir") + "/bin";
-        String clase = "Vocales.Contador";
+        String clase = "UD1.ejercicios.ContadorVocales";
         ProcessBuilder pb;
 
         try {
@@ -62,7 +62,7 @@ public class LanzaVocales {
                 );
 
                 // Redirigir errores a un archivo
-                pb.redirectError(new File("errores.txt"));
+                pb.redirectError(new File("out/errores.txt"));
 
                 // Directorio de trabajo donde están las clases compiladas
                 pb.directory(new File(directoryName));

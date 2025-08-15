@@ -36,7 +36,7 @@ public class LanzaSumador {
     public void lanzarSumador(Long n1, Long n2, String fichResultado) {
         // Directorio donde se encuentran las clases compiladas
         String directoryName = System.getProperty("user.dir") + "/bin";
-        String clase = "UD1.Sumador";
+        String clase = "UD1.ejercicios.Sumador";
         ProcessBuilder pb;
 
         try {
@@ -44,10 +44,10 @@ public class LanzaSumador {
             pb = new ProcessBuilder("java", clase, n1.toString(), n2.toString());
 
             // Redirigir la salida de error a un archivo
-            pb.redirectError(new File("TXT/errores.txt"));
+            pb.redirectError(new File("sum/errores.txt"));
 
             // Redirigir la salida estándar a un archivo específico
-            pb.redirectOutput(new File("TXT/" + fichResultado));
+            pb.redirectOutput(new File("sum/" + fichResultado));
 
             // Establecer el directorio de trabajo
             pb.directory(new File(directoryName));
@@ -85,7 +85,7 @@ public class LanzaSumador {
         // Leer los resultados parciales y sumarlos
         int sumaTotal = 0;
         for (int i = 0; i < 4; i++) {
-            sumaTotal += new Scanner(new File("TXT/result" + (i + 1) + ".txt")).nextInt();
+            sumaTotal += new Scanner(new File("sum/result" + (i + 1) + ".txt")).nextInt();
         }
 
         System.out.println("Suma total: " + sumaTotal);
