@@ -1,5 +1,7 @@
 package UD1.ejercicios;
 
+import java.util.Scanner;
+
 /**
  * La clase Sumador calcula la suma de todos los números enteros comprendidos
  * entre dos valores dados, incluyendo los extremos.
@@ -66,11 +68,21 @@ public class Sumador {
      */
     public static void main(String[] args) {
         Sumador s = new Sumador();
-
+        int n1,
+        	n2;
         // Conversión de los argumentos de cadena a enteros
-        int n1 = Integer.parseInt(args[0]);
-        int n2 = Integer.parseInt(args[1]);
-
+        if (args.length >= 2) {
+            // Leer desde argumentos
+            n1 = Integer.parseInt(args[0]);
+            n2 = Integer.parseInt(args[1]);
+        } else {
+            // Leer desde entrada estándar
+            Scanner sc = new Scanner(System.in);
+            n1 = sc.nextInt();
+            n2 = sc.nextInt();
+            sc.close();
+        }
+      
         // Llamada al método de suma
         long resultado = s.sumar(n1, n2);
 
