@@ -2,71 +2,74 @@ package UD1.ejemplos;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 /**
- * La clase Info demuestra el uso de {@link ProcessBuilder}
- * para ejecutar un proceso externo (en este caso {@code java -version}),
- * redirigir su salida a un fichero y mostrar información de su configuración.
+ * La clase Info muestra información del sistema y de un proceso lanzado mediante ProcessBuilder.
  * 
- * <p>Este ejemplo muestra:</p>
- * <ul>
- *   <li>Cómo redirigir la salida estándar y de error a un archivo.</li>
- *   <li>Cómo acceder y mostrar las variables de entorno del proceso.</li>
- *   <li>Cómo ver el comando y argumentos que se ejecutarán.</li>
- * </ul>
- * 
- * Ejemplo de ejecución:
- * <pre>
- *     java UD1.ejemplos.Info
- * </pre>
- * 
- * Al ejecutarlo, crea un archivo {@code java-version.log} con la salida
- * del comando y muestra información en consola.
- * 
+ * Funcionalidades:
+ *  - Obtiene el número de procesadores disponibles.
+ *  - Configura un ProcessBuilder para ejecutar "java -version".
+ *  - Redirige la salida de error hacia la salida estándar.
+ *  - Guarda toda la salida del proceso en un fichero.
+ *  - Muestra el comando y argumentos que se van a ejecutar.
+ *  - Lista todas las variables de entorno del sistema.
+ *  
  * @author manu
  */
 public class Info {
 
-    /**
-     * Punto de entrada del programa. Configura un {@link ProcessBuilder}
-     * para ejecutar {@code java -version}, redirige la salida a un archivo
-     * y muestra información sobre variables de entorno y comando.
-     * 
-     * @param args No se utilizan argumentos en este ejemplo.
-     * @throws IOException Si ocurre un error al iniciar el proceso o al acceder al archivo.
-     */
     public static void main(String[] args) throws IOException {
-        // Crear ProcessBuilder para ejecutar el comando "java -version"
-        ProcessBuilder processBuilder = new ProcessBuilder("java", "-version");
 
-        // Unir la salida de error a la de salida estándar
+        // ------------------------------------------------------------------
+        // 1. Mostrar información sobre el número de procesadores disponibles
+        // ------------------------------------------------------------------
+        System.out.println("Procesadores: " + Runtime.getRuntime().availableProcessors());
+
+        // ------------------------------------------------------------------
+        // 2. Crear el ProcessBuilder para ejecutar el comando "java -version"
+        // ------------------------------------------------------------------
+        // IMPORTANTE: aquí no se ejecuta todavía, solo se configura.
+        ProcessBuilder processBuilder = new ProcessBuilder("java", "-version");
+        
+        // ------------------------------------------------------------------
+        // 3. Redirigir la salida de error (stderr) hacia la salida estándar (stdout)
+        // ------------------------------------------------------------------
+        // Esto es útil porque el comando "java -version" escribe en stderr por defecto.
         processBuilder.redirectErrorStream(true);
 
-        // Redirigir la salida del proceso al archivo "java-version.log"
+        // ------------------------------------------------------------------
+        // 4. Guardar la salida del proceso en un archivo
+        // ------------------------------------------------------------------
         File log = new File("java-version.log");
         processBuilder.redirectOutput(log);
-        
-        // Mostrar las variables de entorno del proceso
-        System.out.println("Variables de entorno:");
-        Map variablesEntorno = processBuilder.environment();
-        Iterator it = variablesEntorno.keySet().iterator();
-        while (it.hasNext()) {
-            String key = (String) it.next();
+
+        // ------------------------------------------------------------------
+        // 5. Mostrar el comando y sus argumentos
+        // ------------------------------------------------------------------
+        System.out.println("\nProceso y argumentos:");
+        List<String> command = processBuilder.command(); // Lista de argumentos que ejecutará el proceso
+        for (String arg : command) {
+            System.out.println(arg);
+        }
+
+        // ------------------------------------------------------------------
+        // 6. Mostrar las variables de entorno
+        // ------------------------------------------------------------------
+        // processBuilder.environment() devuelve un Map con todas las variables
+        System.out.println("\nVariables de entorno:");
+        Map<String, String> variablesEntorno = processBuilder.environment();
+        for (String key : variablesEntorno.keySet()) {
             System.out.println("Clave: " + key + " -> Valor: " + variablesEntorno.get(key));
         }
 
-        // Mostrar el comando y argumentos del proceso
-        System.out.println("\nProceso y argumentos:");
-        List command = processBuilder.command();
-        Iterator iter = command.iterator();
-        while (iter.hasNext()) {
-            System.out.println(iter.next());
-        }
-
-        // Iniciar el proceso
+        // ------------------------------------------------------------------
+        // 7. Lanzar el proceso con la configuración indicada
+        // ------------------------------------------------------------------
+        // Aquí se ejecuta realmente el comando "java -version".
         Process process = processBuilder.start();
+
+        // El resultado estará en el archivo "java-version.log"
     }
 }
