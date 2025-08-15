@@ -21,7 +21,7 @@ import java.util.Scanner;
  * <p>Este patrón se puede aplicar para distribuir trabajo en paralelo
  * entre varios procesos.</p>
  * 
- * @author
+ * @author manu
  */
 public class LanzaSumador {
 
