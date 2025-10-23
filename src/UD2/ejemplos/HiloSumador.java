@@ -11,8 +11,16 @@ public HiloSumador(int[] fila, long[] sumas, int pos) {
 }
 	    @Override
 	    public void run() {
-	        for (int i = 0; i < fila.length; i++) {
+	    	opLigera();
+	    }
+	    private void opLigera() {
+	    	for (int i = 0; i < fila.length; i++)
+				sumas[pos] += fila[i];
+			
+	    }
+	    private void opPesada() {
+	    	for (int i = 0; i < fila.length; i++) 
 				sumas[pos] += Math.exp(fila[i]) + Math.pow(2, fila[i]) ;
-			}
+			
 	    }
 }
