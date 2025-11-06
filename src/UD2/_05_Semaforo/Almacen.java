@@ -83,7 +83,7 @@ public class Almacen {
             System.out.println(nombreProductor + " produce. Productos: " + producto);
 
             mutex.release();           // sale de sección crítica
-            Thread.sleep(200);         // simulación de tiempo de producción
+            //Thread.sleep(200);         // simulación de tiempo de producción
             consumidor.release();      // avisa a un consumidor
             
         } catch (InterruptedException ex) {
@@ -111,7 +111,7 @@ public class Almacen {
             System.out.println(nombreConsumidor + " consume. Productos: " + producto);
 
             mutex.release();           // sale de sección crítica
-            Thread.sleep(200);         // simulación de tiempo de consumo
+            //Thread.sleep(200);         // simulación de tiempo de consumo
             productor.release();       // avisa a un productor
             
         } catch (InterruptedException ex) {
