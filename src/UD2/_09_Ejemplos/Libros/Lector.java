@@ -68,23 +68,27 @@ public class Lector implements Runnable {
 	@Override
 	public void run() {
 		synchronized (book) {
-			System.out.println(
-					Thread.currentThread().getName() + " esperando que se escriba el libro: " + book.getTitle());
-			try {
-				// El lector espera hasta que un Escritor termine el libro
-				book.wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			System.out.println(Thread.currentThread().getName() + ": El libro se ha escrito!! puedes leerlo");
+			if (!book.isCompleted()) {
+				System.out.println(
+						Thread.currentThread().getName() + " esperando que se escriba el libro: " + book.getTitle());
+				try {
+					// El lector espera hasta que un Escritor termine el libro
+					book.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println(Thread.currentThread().getName() + ": El libro se ha escrito!! puedes leerlo");
 
-			try {
-				Thread.sleep(2000); // Simula el tiempo de lectura
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+				try {
+					Thread.sleep(2000); // Simula el tiempo de lectura
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			} 
 			System.out.println(Thread.currentThread().getName() + " ha leído el libro " + book.getTitle()
-					+ " puede leerlo el siguiente ...");
+						+ " puede leerlo el siguiente ...");
+			book.notify();
+			
 		}
 	}
 }
