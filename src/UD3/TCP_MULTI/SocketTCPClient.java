@@ -42,7 +42,7 @@ public class SocketTCPClient {
     /**
      * Flujo de entrada para recibir datos desde el servidor.
      */
-    private InputStream is;
+    public InputStream is;
 
     /**
      * Constructor del cliente TCP.

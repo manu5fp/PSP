@@ -44,6 +44,7 @@ public class SocketUDPServer {
         DatagramSocket socket;
 
         try {
+        	while(true) {
             System.out.println("(Servidor): Creando socket...");
 
             // Creación del socket UDP asociado al puerto indicado
@@ -89,7 +90,7 @@ public class SocketUDPServer {
             socket.close();
 
             System.out.println("(Servidor): Socket cerrado.");
-
+        	}
         } catch (SocketException e) {
             // Error relacionado con la creación o uso del socket
             e.printStackTrace();
