@@ -111,6 +111,7 @@ public class SocketTCPClient {
 
         // Creación del cliente TCP
         SocketTCPClient cliente = new SocketTCPClient("localhost", 49171);
+     //   SocketTCPClient cliente = new SocketTCPClient("172.16.10.54", 49171);
 
         try {
             // Inicio de la conexión
