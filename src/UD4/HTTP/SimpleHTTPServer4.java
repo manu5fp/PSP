@@ -1,5 +1,4 @@
 package UD4.HTTP;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.ServerSocket;
@@ -13,7 +12,7 @@ public class SimpleHTTPServer4 {
     public static void main(String[] args) throws IOException {
 
         ServerSocket server = new ServerSocket(8080);
-        System.out.println("Listening for connection on port 8080 ....");
+        System.out.println("HTTP Server Ver 4.0. Listening on port 8080...");
 
         while (true) {
             try (Socket socket = server.accept()) {

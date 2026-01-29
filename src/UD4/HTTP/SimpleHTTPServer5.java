@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
-
 public class SimpleHTTPServer5 {
 
 	// Contador global del servidor
@@ -18,7 +17,7 @@ public class SimpleHTTPServer5 {
 	public static void main(String[] args) throws IOException {
 
 		ServerSocket server = new ServerSocket(8080);
-		System.out.println("Listening on port 8080...");
+		System.out.println("HTTP Server Ver 5.0. Listening on port 8080...");
 
 		while (true) {
 			try (Socket socket = server.accept()) {
@@ -37,26 +36,26 @@ public class SimpleHTTPServer5 {
 					String response = "HTTP/1.1 204 No Content\r\n\r\n";
 					out.write(response.getBytes(StandardCharsets.UTF_8));
 
-				} else {
+				} else if (requestLine.startsWith("GET /")){
 					contadorVisitas++;
 					System.out.println(contadorVisitas);
+
+					// Leer y procesar HTML
+					Path filePath = Path.of("index.html");
+					String html = Files.readString(filePath, StandardCharsets.UTF_8);
+
+					html = html.replace("{{FECHA}}", new Date().toString());
+					html = html.replace("{{VISITAS}}", String.valueOf(contadorVisitas));
+
+					byte[] body = html.getBytes(StandardCharsets.UTF_8);
+
+					String header = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html; charset=UTF-8\r\n"
+							+ "Content-Length: " + body.length + "\r\n" + "\r\n";
+
+					out.write(header.getBytes(StandardCharsets.UTF_8));
+					out.write(body);
+					out.flush();
 				}
-
-				// Leer y procesar HTML
-				Path filePath = Path.of("index.html");
-				String html = Files.readString(filePath, StandardCharsets.UTF_8);
-
-				html = html.replace("{{FECHA}}", new Date().toString());
-				html = html.replace("{{VISITAS}}", String.valueOf(contadorVisitas));
-
-				byte[] body = html.getBytes(StandardCharsets.UTF_8);
-
-				String header = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html; charset=UTF-8\r\n"
-						+ "Content-Length: " + body.length + "\r\n" + "\r\n";
-
-				out.write(header.getBytes(StandardCharsets.UTF_8));
-				out.write(body);
-				out.flush();
 
 			}
 		}
