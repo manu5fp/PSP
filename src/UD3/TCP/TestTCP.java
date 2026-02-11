@@ -2,6 +2,9 @@ package UD3.TCP;
 
 import java.io.IOException;
 
+import UD5.Cliente;
+import UD5.Servidor;
+
 /**
  * Clase de prueba para el servidor TCP secuencial y varios clientes TCP. Inicia
  * el servidor en un hilo independiente y lanza varios clientes que se conectan
