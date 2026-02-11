@@ -1,4 +1,4 @@
-package UD5.Simetrica;
+package UD5.Simétrica;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -12,34 +12,29 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * Cifra un fichero usando cifrado simétrico Triple DES (3DES).
+ * Cifra un fichero usando cifrado simétrico DES.
  * <p>
- * Lee una clave secreta desde el fichero {@code clave.raw} y cifra un fichero
- * de entrada, generando un nuevo fichero cifrado con extensión {@code .encript}.
- * </p>
- *
- * <p>
- * Este programa tiene fines didácticos y permite comprender el funcionamiento
- * del cifrado simétrico por bloques utilizando la API criptográfica de Java.
+ * Este algoritmo está actualmente obsoleto y su uso se limita exclusivamente
+ * a fines didácticos para comprender los fundamentos del cifrado simétrico.
  * </p>
  *
  * @author manu
  * @version 1.0
  */
-public class Cifrado3DES {
+public class CifradoDES {
 
     /**
-     * Algoritmo de cifrado simétrico: Triple DES.
+     * Algoritmo de cifrado simétrico: DES.
      */
-    private static final String ALGORITMO_CLAVE_SIMETRICA = "DESede";
+    private static final String ALGORITMO_CLAVE_SIMETRICA = "DES";
 
     /**
      * Nombre del fichero que contiene la clave secreta.
      */
-    private static final String FICH_CLAVE = "clave.raw";
+    private static final String NOM_FICH_CLAVE = "clave.raw";
 
     /**
-     * Método principal que cifra el fichero indicado.
+     * Método principal que cifra un fichero usando DES.
      *
      * @param args argumentos de línea de comandos (no utilizados)
      */
@@ -51,10 +46,10 @@ public class Cifrado3DES {
         /* ===============================
          * LECTURA DE LA CLAVE SECRETA
          * =============================== */
-        try (FileInputStream fisClave = new FileInputStream(FICH_CLAVE)) {
+        try (FileInputStream fisClave = new FileInputStream(NOM_FICH_CLAVE)) {
             valorClave = fisClave.readAllBytes();
         } catch (IOException e) {
-            System.out.printf("ERROR leyendo el fichero de clave %s%n", FICH_CLAVE);
+            System.out.printf("ERROR leyendo el fichero de clave %s%n", NOM_FICH_CLAVE);
             return;
         }
 

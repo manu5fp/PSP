@@ -1,4 +1,4 @@
-package UD5.Simetrica;
+package UD5.Simétrica;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;

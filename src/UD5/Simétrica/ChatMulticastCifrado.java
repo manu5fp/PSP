@@ -1,4 +1,4 @@
-package UD5.Simetrica;
+package UD5.Simétrica;
 
 import java.net.DatagramPacket;
 import java.net.InetAddress;
