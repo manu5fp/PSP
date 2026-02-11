@@ -28,7 +28,7 @@ import javax.crypto.spec.SecretKeySpec;
  * </ul>
  * </p>
  *
- * @author Profesor DAM
+ * @author manu
  */
 public class ChatMulticastCifrado {
 
