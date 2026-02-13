@@ -1,4 +1,4 @@
-package UD5.Simétrica;
+package UD5.Simétrica; 
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

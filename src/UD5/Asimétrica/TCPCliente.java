@@ -1,77 +1,45 @@
 package UD5.Asimétrica;
-// Clase cliente TPC
-import java.io.DataInputStream;
-import java.net.InetAddress;
-import java.net.Socket;
 
-/**
- * Clase {@code Cliente} que implementa un cliente TCP sencillo.
- * <p>
- * Este cliente se conecta a un servidor que escucha en el puerto 5000
- * de la máquina local (localhost), recibe un mensaje en formato UTF
- * y finaliza la conexión.
- * </p>
- *
- * <p>
- * Es un ejemplo básico de comunicación cliente-servidor utilizando
- * sockets en Java.
- * </p>
- *
- * @author Diego
- * @version 1.0
- */
+import java.io.*;
+import java.net.*;
+import java.security.*;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
+import javax.crypto.Cipher;
+
 public class TCPCliente {
+    private static final String ALGORITMO = "RSA";
+    private static final String FICH_PUBLICA = "clavepublica.pem";
 
-    /**
-     * Método principal del programa.
-     * <p>
-     * Realiza los siguientes pasos:
-     * <ul>
-     *   <li>Obtiene la dirección IP local.</li>
-     *   <li>Establece una conexión con el servidor mediante un {@link Socket}.</li>
-     *   <li>Recibe datos enviados por el servidor usando un {@link DataInputStream}.</li>
-     *   <li>Muestra el mensaje recibido por pantalla.</li>
-     *   <li>Cierra la conexión.</li>
-     * </ul>
-     * </p>
-     *
-     * @param argv argumentos de la línea de comandos (no utilizados).
-     */
     public static void main(String argv[]) {
-
-        // Dirección IP del servidor (en este caso, la máquina local)
-        InetAddress direccion;
-
-        // Socket que representa la conexión con el servidor
-        Socket servidor;
-
-        // Puerto en el que el servidor está escuchando
         int PUERTO = 5000;
 
-        System.out.println("Soy el cliente e intento conectarme");
-
         try {
-            // Obtenemos la dirección IP local (localhost)
-            direccion = InetAddress.getLocalHost();
+            // 1. Cargar la clave pública
+            byte[] publicaBytes = new FileInputStream(FICH_PUBLICA).readAllBytes();
+            KeyFactory kf = KeyFactory.getInstance(ALGORITMO);
+            PublicKey clavePublica = kf.generatePublic(new X509EncodedKeySpec(publicaBytes));
 
-            // Creamos el socket indicando dirección y puerto
-            servidor = new Socket(direccion, PUERTO);
+            InetAddress direccion = InetAddress.getLocalHost();
+            Socket servidor = new Socket(direccion, PUERTO);
 
-            System.out.println("Conexión realizada con éxito");
+            DataInputStream in = new DataInputStream(servidor.getInputStream());
+            
+            // 2. Leer los dos strings enviados por el servidor
+            String mensajeClaro = in.readUTF();
+            String mensajeCifradoB64 = in.readUTF();
 
-            // Flujo de entrada para recibir datos del servidor
-            DataInputStream datos = new DataInputStream(servidor.getInputStream());
+            // 3. Descifrar el mensaje para verificar
+            Cipher cipher = Cipher.getInstance(ALGORITMO);
+            cipher.init(Cipher.DECRYPT_MODE, clavePublica);
+            byte[] descifradoBytes = cipher.doFinal(Base64.getDecoder().decode(mensajeCifradoB64));
+            String mensajeRecuperado = new String(descifradoBytes, "UTF-8");
 
-            // Leemos un mensaje en formato UTF enviado por el servidor
-            System.out.println(datos.readUTF());
+            System.out.println("Mensaje recibido: " + mensajeClaro + " (" + mensajeCifradoB64 + ")");
+            System.out.println("Verificación (descifrado con clave pública): " + mensajeRecuperado);
 
-            // Cerramos la conexión
             servidor.close();
-
-            System.out.println("Soy el cliente y cierro la conexión");
-
         } catch (Exception e) {
-            // Captura y muestra cualquier error de conexión o E/S
             e.printStackTrace();
         }
     }
