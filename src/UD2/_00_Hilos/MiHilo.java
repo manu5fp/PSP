@@ -41,5 +41,12 @@ public class MiHilo extends Thread {
             }
         };
         thread.start();
+        Thread thread2 = new Thread(){
+            @Override
+            public void run(){
+                System.out.println("Hola, soy el hilo "  + getName());
+            }
+        };
+        thread2.start();
     }
 }
