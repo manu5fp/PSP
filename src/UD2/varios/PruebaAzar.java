@@ -1,7 +1,5 @@
 package UD2.varios;
 
-import Azar;
-
 public class PruebaAzar {
     public static void main(String[] args) {
        

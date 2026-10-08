@@ -1,3 +1,4 @@
+package UD2.varios;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
