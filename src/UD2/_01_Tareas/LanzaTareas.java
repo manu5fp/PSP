@@ -21,10 +21,10 @@ public class LanzaTareas {
             hilos[i].setName("Hilo-" + i); // Asignamos un nombre identificativo
 
             // Ejemplo opcional de ajuste de prioridades (comentado por defecto):
-            // if (i == 1 || i == 2)
-            //     hilos[i].setPriority(Thread.MAX_PRIORITY);
-            // else
-            //     hilos[i].setPriority(Thread.MIN_PRIORITY);
+             if (i == 1 || i == 2)
+                 hilos[i].setPriority(Thread.MAX_PRIORITY);
+             else
+                 hilos[i].setPriority(Thread.MIN_PRIORITY);
 
             hilos[i].start(); // Inicia la ejecución del hilo
         }
