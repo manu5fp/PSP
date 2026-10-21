@@ -56,7 +56,7 @@ public class Calculador implements Runnable {
         for (int i = 0; i < 1; i++) {
             System.out.println(Thread.currentThread().getName() + " calculando..." + i);
             try {
-                Thread.sleep((long) (Math.random() * 2000));
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 System.out.println(Thread.currentThread().getName() + " interrumpido");
                 return; // finaliza inmediatamente si el hilo ha sido interrumpido
