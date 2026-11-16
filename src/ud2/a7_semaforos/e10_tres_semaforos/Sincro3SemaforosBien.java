@@ -1,9 +1,9 @@
-package UD2.Problema;
+package ud2.a7_semaforos.e10_tres_semaforos;
 
 import java.util.concurrent.Semaphore;
 
-import UD2.varios.Azar;
-import UD2.varios.Crono;
+import ud2.comun.Azar;
+import ud2.comun.Crono;
 
 public class Sincro3SemaforosBien {
 
