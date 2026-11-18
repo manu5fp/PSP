@@ -1,4 +1,4 @@
-package ud2.a4;
+package ud2.APUNTES.a4;
 
 /**
  * Una bandera debe ser volatile para que el cambio sea visible con garantías.

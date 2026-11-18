@@ -1,4 +1,4 @@
-package ud2.a2;
+package ud2.APUNTES.a2;
 
 /**
  * Finalización cooperativa con interrupt(): el hilo decide cómo y cuándo

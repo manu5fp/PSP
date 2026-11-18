@@ -1,4 +1,4 @@
-package ud2.a3;
+package ud2.APUNTES.a3;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;

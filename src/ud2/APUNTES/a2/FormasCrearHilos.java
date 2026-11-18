@@ -1,4 +1,4 @@
-package ud2.a2;
+package ud2.APUNTES.a2;
 
 /** Las tres formas habituales de indicar a un hilo qué código debe ejecutar. */
 public class FormasCrearHilos {

@@ -1,4 +1,4 @@
-package ud2.a2;
+package ud2.APUNTES.a2;
 
 /** start() crea un hilo nuevo; run() es una llamada normal en el hilo actual. */
 public class StartRun {

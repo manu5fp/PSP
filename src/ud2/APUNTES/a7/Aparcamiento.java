@@ -1,4 +1,4 @@
-package ud2.a7;
+package ud2.APUNTES.a7;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;

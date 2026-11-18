@@ -1,4 +1,4 @@
-package ud2.a2;
+package ud2.APUNTES.a2;
 
 /** Una excepción no capturada termina solo su hilo, no el proceso. */
 public class ExcepcionEnHilo {

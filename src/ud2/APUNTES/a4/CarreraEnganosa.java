@@ -1,4 +1,4 @@
-package ud2.a4;
+package ud2.APUNTES.a4;
 
 /** Un programa con error de concurrencia puede dar casi siempre el resultado correcto. */
 public class CarreraEnganosa {

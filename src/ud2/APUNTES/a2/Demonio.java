@@ -1,4 +1,4 @@
-package ud2.a2;
+package ud2.APUNTES.a2;
 
 /**
  * La JVM no espera a los hilos demonio: su finally puede no llegar a

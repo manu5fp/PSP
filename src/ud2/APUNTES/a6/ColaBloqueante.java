@@ -1,4 +1,4 @@
-package ud2.a6;
+package ud2.APUNTES.a6;
 
 
 import java.util.concurrent.ArrayBlockingQueue;

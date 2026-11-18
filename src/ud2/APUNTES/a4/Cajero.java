@@ -1,4 +1,4 @@
-package ud2.a4;
+package ud2.APUNTES.a4;
 /** Comprobar y actuar debe ser una única operación atómica. */
 public class Cajero {
 	static class Cuenta {

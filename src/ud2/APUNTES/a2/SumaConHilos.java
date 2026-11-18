@@ -1,4 +1,4 @@
-package ud2.a2;
+package ud2.APUNTES.a2;
 
 /** Reparte una suma entre hilos. join() garantiza que los resultados ya están escritos. */
 public class SumaConHilos {

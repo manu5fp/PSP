@@ -1,4 +1,4 @@
-package ud2.a1;
+package ud2.APUNTES.a1;
 
 /** Las variables locales están en la pila de cada hilo; los objetos pueden compartirse. */
 public class ContextoHilo {

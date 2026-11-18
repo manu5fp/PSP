@@ -1,4 +1,4 @@
-package ud2.a5;
+package ud2.APUNTES.a5;
 
 /** synchronized solo excluye a quienes usan el mismo monitor. */
 public class MonitorEquivocado {
